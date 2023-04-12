@@ -1,0 +1,63 @@
+.sale {
+    font-size: 14px;
+    background-color: rgb(255, 72, 0);
+    text-align: center;
+    padding: 9px 2rem;
+    letter-spacing: 0.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+.navbar-brand img {
+    width: 100px;
+}
+
+.form-control {
+    width: 900px;
+}
+
+.navbar {
+    background-color: #fff; /* Fondo del navbar */
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilo para el logo */
+.navbar-brand {
+    font-weight: bold; /* Fuente en negrita */
+    font-size: 24px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para la barra de búsqueda */
+.form-control {
+    border: none; /* Sin borde */
+    background-color: #f5f5f5; /* Fondo de la barra de búsqueda */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    width: 400px; /* Ancho de la barra de búsqueda */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilo para el botón de búsqueda */
+.btn-outline-success {
+    border-color: #28a745; /* Color del borde */
+    color: #28a745; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 20px; /* Bordes redondeados */
+    margin-left: 10px; /* Espaciado izquierdo */
+}
+
+/* Estilo para los enlaces de la barra de navegación */
+.nav-link {
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilo para los enlaces de login y carrito */
+.nav-link:hover {
+    color: #28a745; /* Color del texto al pasar el cursor */
+}

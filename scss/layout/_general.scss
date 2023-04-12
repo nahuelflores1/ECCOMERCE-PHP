@@ -1,0 +1,34 @@
+/*Resets*/
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/*Base-General*/
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*Base-Bkg-General*/
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    filter: brightness(70%);
+}
+
+.stretch {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

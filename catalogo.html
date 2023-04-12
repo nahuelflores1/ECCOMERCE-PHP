@@ -14,248 +14,75 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="main.css">
-    <title>TIENDA HOONIGAN</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <title>CAR PARTS</title>
 </head>
 
 <body>
+    <p class="sale">¡Use el código ET36 para obtener hasta un 15% de descuento en el mes de agosto!</p>
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid">
-                <a href="" class="navbar-brand d-lg-none">
-                    <img src="./img/icons-img/sodapdf.png" alt="Hoonigan-Racing">
-                </a>
-                <button class="navbar-toggler navbar-mov" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">.</span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="col-md-auto block-img">
-                        <a href="index.html" class="navbar-brand d-none d-lg-block">
-                            <img src="./img/icons-img/sodapdf.png" alt="Hoonigan-Racing">
-                        </a>
-                    </div>
-                    <div class="container d-flex container-navbar">
-                        
-                    </div>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#"><img src="./img/icons-img/sodapdf.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <div class="container d-flex container-navbar">
-                        <div class="row">
-                            <ul class="navbar-nav mx-auto">
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto list-menu list-menu--inline">
+                    <!-- Aquí van las opciones de menú -->
+                </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Marcas
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">AAAAA</a></li>
+                        <li><a class="dropdown-item" href="#">EEEEE</a></li>
+                        <li><a class="dropdown-item" href="#">TTTTT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categorias
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">AAAAA</a></li>
+                        <li><a class="dropdown-item" href="#">EEEEE</a></li>
+                        <li><a class="dropdown-item" href="#">TTTTT</a></li>
+                    </ul>
+                </li>
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Carrito</a>
+                    </li>
+                </ul>
             </div>
         </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </header>
-    <main class="main-tienda">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button class="botones active" type="submit" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="0" aria-label="Slide 1">&nbsp;</button>
-                <button class="botones active" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="1" aria-label="Slide 2">&nbsp;</button>
-                <button class="botones active" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="2" aria-label="Slide 3">&nbsp;</button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./img/icons-img/wallpaperbetter.com_3840x2160.jpg" style="object-position: top center;"
-                        class="d-block" alt="Drift interior">
-                </div>
-                <div class="carousel-item photo-ae86">
-                    <img src="./img/icons-img/wp3149997-japan-cars-wallpapers.jpg" class="d-block" alt="Ae86 Drift">
-                </div>
-                <div class="carousel-item">
-                    <img src="./img/icons-img/rsz_hre_reveal_01.jpg" class="d-block " alt="Bmw e92">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true">&nbsp;</span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true">&nbsp;</span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <div class="container-search-menu">
-            <div class="container-search-tienda">
-                <form class="container-search d-flex">
-                    <span>SELECCIONA TU VEHICULO</span>
-                    <section class="row">
-                        <div class="col-2">
-                            <select class="container-select" name="Ano">
-                                <option value="">2022</option>
-                                <option value="">2021</option>
-                                <option value="">2020</option>
-                                <option value="">2019</option>
-                                <option value="">2018</option>
-                                <option value="">2017</option>
-                                <option value="">2016</option>
-                                <option value="">2015</option>
-                                <option value="">2014</option>
-                                <option value="">2013</option>
-                            </select>
-                        </div>
-                    </section>
-                    <section class="row">
-                        <div class="col-2">
-                            <select class="container-select" name="Marca">
-                                <option value="">Toyota</option>
-                                <option value="">Fiat</option>
-                                <option value="">Renault</option>
-                                <option value="">Volkswagen</option>
-                                <option value="">Alfa Romeo</option>
-                                <option value="">Ford</option>
-                                <option value="">Nissan</option>
-                                <option value="">Peugeot</option>
-                                <option value="">Bmw</option>
-                                <option value="">Audi</option>
-                            </select>
-                        </div>
-                    </section>
-                    <section class="row">
-                        <div class="col-2">
-                            <select class="container-select" name="Modelo">
-                                <option value="">Siena</option>
-                                <option value="">Camry</option>
-                                <option value="">m240i</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                    </section>
-                    <section class="row">
-                        <div class="col-2">
-                            <select class="container-select" name="SubModelo">
-                                <option value="">Base</option>
-                                <option value="">AWD</option>
-                            </select>
-                        </div>
-                    </section>
-                    <div class="row">
-                        <div class="col-2">
-                            <input type="button" value="BUSCAR">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="container d-flex justify-content-center">
-                <section class="row container-row">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/brakes-icon.jpg" class="card-img-top" alt="Frenos Brembo">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Frenos</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/cooling-icon.jpg" class="card-img-top"
-                                alt="Refrigeracion Competicion">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Refrigeracion</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/wheels-icon.jpg" class="card-img-top" alt="Llantas Rotiform">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Llantas</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/suspension-icon.jpg" class="card-img-top"
-                                alt="Suspencion Ohlins">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Suspencion</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/bumpers-icon.jpg" class="card-img-top" alt="Paragolpes e92">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Parachoques</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/forced-induction-icon.jpg" class="card-img-top" alt="Turbo">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Induccion Forzada</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/filters-icon.jpg" class="card-img-top"
-                                alt="Filtro de aire de alta presion">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Filtros de aire</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card">
-                            <img src="./img/catalogo-img/drivetrain-icon.jpg" class="card-img-top"
-                                alt="Transmision Preparada">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Transmision</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="container-card" style="">
-                            <img src="./img/catalogo-img/interior-accessories-icon.jpg" class="card-img-top"
-                                alt="Volante momo">
-                            <div class="card-body">
-                                <a href="#" class="btn btn-primary">Interior</a>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-            </div>
-        </div>
+    <main>
+
     </main>
-    <footer class="footer">
-        <section class="text-center">
-            <a class="btn-footer btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <div class="bi bi-instagram"></div>
-            </a>
+    <footer>
 
-            <a class="btn-footer btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <div class="bi bi-twitter"></div>
-            </a>
-
-            <a class="btn-footer btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <div class="bi bi-facebook"></div>
-            </a>
-
-            <a class="btn-footer btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <div class="bi bi-github"></div>
-            </a>
-        </section>
-
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            <a class="text-white" href="..">Block. All Rights Reserved</a>
-        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
