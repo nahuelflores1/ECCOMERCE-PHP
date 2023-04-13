@@ -36,7 +36,7 @@ body {
 /*Catalogo*/
 .sale {
   font-size: 14px;
-  background-color: #ff4800;
+  background-color: #35160a;
   text-align: center;
   padding: 9px 2rem;
   letter-spacing: 0.1rem;
@@ -47,13 +47,13 @@ body {
   margin-bottom: 0; }
 
 .navbar-brand img {
-  width: 100px; }
+  width: 250px; }
 
 .form-control {
   width: 900px; }
 
 .navbar {
-  background-color: #fff;
+  background-color: white;
   /* Fondo del navbar */
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
   /* Sombra */
