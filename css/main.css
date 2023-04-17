@@ -132,7 +132,8 @@ body {
         object-fit: contain; }
     .glider-contain .product-box .p-box-text {
       margin-top: 5px;
-      width: 100%; }
+      width: 100%;
+      text-align: center; }
       .glider-contain .product-box .p-box-text .product-title {
         color: #333333;
         font-weight: 600;
