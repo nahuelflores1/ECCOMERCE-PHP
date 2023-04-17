@@ -1,0 +1,36 @@
+.navbar {
+    object-fit: cover;
+    object-position: 10px 10px;
+    height: 100px;
+    .col-4 {
+        padding-left: 70px;
+        .navbar-brand {
+            display: flex;
+            justify-content: center;
+            img {
+                width: 50%;
+            }
+        }
+        .icon-navbar {
+            font-size: 23px;
+            .nav-link {
+                color: rgb(50, 23, 23);
+                &:hover {
+                    color: $principal-color;
+                }
+            }
+        }
+        .btn-group:hover {
+            &:hover {
+                color: $principal-color;
+            }
+        }
+    }
+    .nav-contacto {
+        display: flex;
+        align-items: center;
+        &:hover {
+            color: $principal-color !important;
+        }
+    }
+}
