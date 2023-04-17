@@ -1,247 +1,277 @@
 .banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    position: absolute;
+    text-align: center;
+    color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
-    h1 {
-        position: absolute;
-        text-align: center;
-        color: white;
-        display: flex;
-        align-items: center;
-        z-index: 11111111;
-        letter-spacing: 1px;
-    }
-    img {
-        width: 100%;
-        height: 65vh;
-        object-fit: cover;
-        filter: brightness(20%);
-    }
+    z-index: 11111111;
+    letter-spacing: 1px;
+  }
+  img {
+    width: 100%;
+    height: 65vh;
+    object-fit: cover;
+    filter: brightness(20%);
+  }
 }
 
 .p-slider {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px auto;
-    width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  width: 95%;
 }
 
 .product-slider-heading {
-    font-size: 28px;
-    text-transform: uppercase;
-    color: #313131;
-    text-align: center;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: #313131;
+  text-align: center;
 }
 
 .glider-contain {
-    width: 90% !important;
+  width: 90% !important;
 }
 .product-box {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    padding: 15px;
-    margin: 0px 20px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 15px;
+  margin: 0px 20px;
+  position: relative;
 }
 
 .p-img-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
 }
 
 .p-img a,
 .p-img {
-    width: 100%;
-    height: 300px;
-    display: flex;
+  width: 100%;
+  height: 300px;
+  display: flex;
 }
 
 .p-img a img {
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
 }
 
 .p-box-text {
-    margin-top: 5px;
-    width: 100%;
+  margin-top: 5px;
+  width: 100%;
 }
 
 .product-category {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .product-category span {
-    color: #acacac;
-    font-size: 0.9rem;
-    margin: 5px 0px;
+  color: #acacac;
+  font-size: 0.9rem;
+  margin: 5px 0px;
 }
 
 .producto-title {
-    color: #333333;
-    font-weight: 600;
-    text-decoration: none;
+  color: #333333;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .producto-title:hover {
-    color: #111111;
-    opacity: 0.7;
-    transition: all ease;
+  color: #111111;
+  opacity: 0.7;
+  transition: all ease;
 }
 
 .price-buy {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 8px;
 }
 
 .price-buy .p-price {
-    font-size: 1.3rem;
-    color: #333333;
-    font-weight: 700;
+  font-size: 1.3rem;
+  color: #333333;
+  font-weight: 700;
 }
 
 .price-buy .p-but-btn {
-    color: #e63b3b;
-    margin: 0px 5px;
-    font-weight: 600;
+  color: #e63b3b;
+  margin: 0px 5px;
+  font-weight: 600;
 }
 
 .price-buy .p-buy-btn:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .p-discount {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    width: 65px;
-    height: 24px;
-    color: #ffffff;
-    background-color: $principal-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    z-index: 100;
-    border-radius: 3px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 65px;
+  height: 24px;
+  color: #ffffff;
+  background-color: $principal-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  z-index: 100;
+  border-radius: 3px;
 }
 
 //ESTE
 .product-title {
-    color: #333333;
-    font-weight: 600;
-    transition: all ease 0.3s;
-    text-decoration: none;
+  color: #333333;
+  font-weight: 600;
+  transition: all ease 0.3s;
+  text-decoration: none;
 }
 .product-title:hover {
-    opacity: 0.7;
-    transition: all ease 0.3s;
+  opacity: 0.7;
+  transition: all ease 0.3s;
 }
 
 .price-buy .p-buy-btn {
-    color: $principal-color;
-    margin: 0px 5px;
-    font-weight: 500;
-    text-decoration: none;
+  color: $principal-color;
+  margin: 0px 5px;
+  font-weight: 500;
+  text-decoration: none;
 }
 .price-buy .p-buy-btn:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 @media (max-width: 500px) {
-    .product-slider-heading {
-        text-align: center;
-        font-size: 1.3rem;
-    }
-    .product-slider {
-        width: 100%;
-    }
-    .product-img a,
-    .product-img {
-        height: 230px;
-    }
+  .product-slider-heading {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  .product-slider {
+    width: 100%;
+  }
+  .product-img a,
+  .product-img {
+    height: 230px;
+  }
 
-    .product-img a img {
-        animation: none;
-    }
-    .product-img-back {
-        display: none;
-    }
-    .product-img-container:hover .product-img-back {
-        display: none;
-    }
-    .product-img-container:hover .product-img-front {
-        display: block;
-    }
+  .product-img a img {
+    animation: none;
+  }
+  .product-img-back {
+    display: none;
+  }
+  .product-img-container:hover .product-img-back {
+    display: none;
+  }
+  .product-img-container:hover .product-img-front {
+    display: block;
+  }
 }
 @media (max-width: 400px) {
-    .product-img a,
-    .product-img {
-        height: 190px;
-    }
-    w .product-box-offer {
-        top: 10px;
-        left: 20px;
-    }
+  .product-img a,
+  .product-img {
+    height: 190px;
+  }
+  w .product-box-offer {
+    top: 10px;
+    left: 20px;
+  }
 }
 
 .row {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .shoes-section {
-    width: 45%;
-    height: 600px;
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        object-position: 0px 0px;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.005);
-        }
-    }
+  width: 45%;
+  height: 600px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  img {
+    filter: brightness(30%);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: 0px 0px;
+    transition: transform 0.3s;
+  }
+  p {
+    font-size: 50px;
+    z-index: 111111;
+    color: white;
+    position: absolute;
+  }
+  &:hover {
+    transform: scale(1.004);
+  }
 }
 
 .t-shirts-section {
-    height: 300px;
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        object-position: 0px 0px;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.005);
-        }
-    }
+  height: 300px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  img {
+    filter: brightness(30%);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: 0px 0px;
+    transition: transform 0.3s;
+  }
+  p {
+    font-size: 50px;
+    color: white;
+    position: absolute;
+    z-index: 111111;
+  }
+  &:hover {
+    transform: scale(1.004);
+  }
 }
 
 .hoddie-section {
-    height: 300px;
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        object-position: 0px 0px;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.005);
-        }
-    }
+  height: 300px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  img {
+    filter: brightness(30%);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: 0px 0px;
+    transition: transform 0.3s;
+  }
+  p {
+    font-size: 50px;
+    color: white;
+    z-index: 111111;
+    position: absolute;
+  }
+  &:hover {
+    transform: scale(1.004);
+  }
 }

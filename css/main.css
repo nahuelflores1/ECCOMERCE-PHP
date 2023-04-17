@@ -232,37 +232,64 @@ body {
 
 .shoes-section {
   width: 45%;
-  height: 600px; }
+  height: 600px;
+  align-items: center;
+  display: flex;
+  justify-content: center; }
   .shoes-section img {
+    filter: brightness(30%);
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: 0px 0px;
     transition: transform 0.3s; }
-    .shoes-section img:hover {
-      transform: scale(1.005); }
+  .shoes-section p {
+    font-size: 50px;
+    z-index: 111111;
+    color: white;
+    position: absolute; }
+  .shoes-section:hover {
+    transform: scale(1.004); }
 
 .t-shirts-section {
-  height: 300px; }
+  height: 300px;
+  align-items: center;
+  display: flex;
+  justify-content: center; }
   .t-shirts-section img {
+    filter: brightness(30%);
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: 0px 0px;
     transition: transform 0.3s; }
-    .t-shirts-section img:hover {
-      transform: scale(1.005); }
+  .t-shirts-section p {
+    font-size: 50px;
+    color: white;
+    position: absolute;
+    z-index: 111111; }
+  .t-shirts-section:hover {
+    transform: scale(1.004); }
 
 .hoddie-section {
-  height: 300px; }
+  height: 300px;
+  align-items: center;
+  display: flex;
+  justify-content: center; }
   .hoddie-section img {
+    filter: brightness(30%);
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: 0px 0px;
     transition: transform 0.3s; }
-    .hoddie-section img:hover {
-      transform: scale(1.005); }
+  .hoddie-section p {
+    font-size: 50px;
+    color: white;
+    z-index: 111111;
+    position: absolute; }
+  .hoddie-section:hover {
+    transform: scale(1.004); }
 
 /*Sales*/
 .sale {
