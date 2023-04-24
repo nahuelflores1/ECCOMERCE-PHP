@@ -1,0 +1,52 @@
+.row {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 0 !important;
+}
+
+.col-md-6 {
+    margin: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        width: 100%;
+        font-weight: 400;
+    }
+    .small-h2 {
+        margin: 50px 0px;
+        text-align: center;
+    }
+}
+
+.button {
+    width: 50px;
+    height: 30px;
+}
+
+.btn-cart {
+    background-color: black;
+    color: white;
+    width: 80%;
+    height: 50px;
+    margin-bottom: 8px;
+    &:hover {
+        color: black;
+    }
+}
+
+.btn-buy {
+    background-color: $principal-color;
+    width: 80%;
+    height: 50px;
+    margin-top: 8px;
+    color: white;
+    &:hover {
+        color: black;
+    }
+}

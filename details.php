@@ -1,3 +1,56 @@
+<?php
+
+require 'config/config.php';
+require 'config/database.php';
+$db = new Database();
+$con = $db->conectar();
+
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+$token = isset($_GET['token']) ? $_GET['token'] : '';
+
+if ($id == '' || $token == '') {
+    echo 'Error al procesar la peticio1111n';
+    exit;
+} else {
+
+    $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
+
+    if ($token == $token_tmp) {
+
+        $sql = $con->prepare("SELECT count(id) FROM products WHERE id=? AND activo=1");
+        $sql->execute([$id]);
+        if ($sql->fetchColumn() > 0) {
+
+            $sql = $con->prepare("SELECT nombre, descripcion, precio FROM products WHERE id=? AND activo=1 
+            LIMIT 1");
+            $sql->execute([$id]);
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            $nombre = $row['nombre'];
+            $descripcion = $row['descripcion'];
+            $precio = $row['precio'];
+            $dir_img = 'img/shoes/' . $id . '/';
+
+            $rutaImg = $dir_img . 'principal.jpg';
+
+            if (!file_exists($rutaImg)) {
+                $rutaImg = 'img/nophoto.jpg';
+            }
+
+            $imagenes = array();
+            $dir = dir($dir_img);
+
+            while (($archivo = $dir->read()) != false) {
+                if ($archivo != 'principal.jpg' && (strpos($archivo, 'jpg') || strpos($archivo, 'jpeg'))) {
+                    $img = $dir_img . $archivo;
+                }
+            }
+            $dir->close();
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +69,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/glider.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
@@ -69,75 +126,43 @@
         </nav>
     </header>
     <main>
-        <section class="banner">
-            <h1>SOMOS LA MARCA Nº1 DEL PAIS</BR> EN EXCLUSIVDAD</h1>
-            <img src="./img/shoes/yezzy-banner.jpg" alt="">
-        </section>
-        <section>
-            <h3 class="p-slider">PRODUCTOS DESTACADOS</h3>
-            <div class="glider-contain">
-                <div class="glider">
-                    <section class="product-box">
-                        <span class="p-discount">Sale</span>
-                        <div class="p-img-container">
-                            <div class="p-img">
-                                <a href=""><img src="./img/shoes/adidas-Forum-Buckle-Low-Bad-Bunny-Last-Forum.jpg"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                        <div class="p-box-text">
-                            <a href="" class="product-title">
-                                Adidas Forum Buckle Low Bad Bunny Last Forum
-                            </a>
-                            <div class="price-buy">
-                                <span class="p-price">$350</span>
-                                <a class="p-buy-btn" href="">Agregar a carrito</a>
-                            </div>
-                        </div>
-                    </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="<?php echo $img ?>" class="img-fluid" alt="Producto">
                 </div>
-                <button aria-label="Previous" class="glider-prev">«</button>
-                <button aria-label="Next" class="glider-next">»</button>
-            </div>
-        </section>
-        <section>
-            <div class="row" style="padding: 100px 0px;">
-                <div class="shoes-section col-md-8 p-0">
-                    <p>ZAPATILLAS</p>
-                    <img src="./img/jordan-1-red-banner.jpg" alt="">
-                </div>
-                <div class="col-md-4 p-0">
-                    <div class="hoddie-section col-md-12 p-0">
-                        <p>HODDIES</p>
-                        <img src="./img/clothes-section.jpg" alt="">
+                <div class="col-md-6">
+                    <h1>
+                        <?php echo $nombre; ?>
+                    </h1>
+                    <div class="small-h2">
+                        <h2>$
+                            <?php echo $precio; ?>
+                        </h2>
+                        <small>size 9.5</small>
                     </div>
-                    <div class="t-shirts-section col-md-12 p-0">
-                        <p>REMERAS</p>
-                        <img src="./img/t-shirts-productos.jpg" alt="">
+                    <div class="mb-3">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
                     </div>
+                    <button type="button" class="btn-cart btn">Agregar al Carrito</button>
+                    <button type="button" class="btn-buy btn">Comprar Ahora</button>
+
                 </div>
             </div>
-        </section>
+        </div>
+
     </main>
     <footer>
 
     </footer>
-    <script src="js/glider.min.js"></script>
-    <script>
-        new Glider(document.querySelector('.glider'), {
-            slidesToScroll: 1,
-            slidesToShow: 5,
-            draggable: true,
-            dots: '.dots',
-            arrows: {
-                prev: '.glider-prev',
-                next: '.glider-next'
-            }
-        });
-    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

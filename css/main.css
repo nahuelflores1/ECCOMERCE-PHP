@@ -232,6 +232,10 @@ body {
     .row .hoddie-section:hover {
       transform: scale(1.004); }
 
+.product-title {
+  width: 300px;
+  overflow: hidden !important; }
+
 /*Sales*/
 .sale {
   font-size: 14px;
@@ -244,3 +248,48 @@ body {
   align-items: center;
   color: white;
   margin-bottom: 0; }
+
+/*Details*/
+.row {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0 !important; }
+
+.col-md-6 {
+  margin: 0px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .col-md-6 h1 {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    width: 100%;
+    font-weight: 400; }
+  .col-md-6 .small-h2 {
+    margin: 50px 0px;
+    text-align: center; }
+
+.button {
+  width: 50px;
+  height: 30px; }
+
+.btn-cart {
+  background-color: black;
+  color: white;
+  width: 80%;
+  height: 50px;
+  margin-bottom: 8px; }
+  .btn-cart:hover {
+    color: black; }
+
+.btn-buy {
+  background-color: #ab2020;
+  width: 80%;
+  height: 50px;
+  margin-top: 8px;
+  color: white; }
+  .btn-buy:hover {
+    color: black; }
