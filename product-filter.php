@@ -1,3 +1,10 @@
+<?php
+require 'config/database.php';
+require 'config/config-filter.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +23,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/glider.min.css">
     <title>KicksMarket</title>
@@ -72,45 +75,68 @@
             </div>
         </nav>
     </header>
-
     <main>
-        <section class="banner-products">
-            <h1>SHOES</h1>
-            <img src="./img/banner-shoess.jpg" alt="">
-        </section>
-        <div id="sidebar">
-            <form id="filter-form">
-                <h3>Marcas</h3>
-                <ul>
-                    <li><input type="checkbox" name="brand" value="marca1">Marca 1</li>
-                    <li><input type="checkbox" name="brand" value="marca2">Marca 2</li>
-                    <li><input type="checkbox" name="brand" value="marca3">Marca 3</li>
+        <div class="row">
+            <div class="col-lg-3">
+                <h5>CATEGORIAS</h5>
+                <hr>
+                <h6>Marcas</h6>
+                <ul class="list-group">
+                    <?php
+                        $sql = "SELECT DISTINCT product_marca FROM products_filter ORDER BY product_marca";
+                        $result = $con->query($sql);
+                        while($row=$result->fetch_assoc()) {
+                    ?>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input product_check"
+                                        value="<?= $row['product_marca']; ?>" id="product_marca"><?= $row['product_marca']; ?>
+                                </label>
+                            </div>
+                        </li>
+                    <?php } ?>
                 </ul>
-                <h3>Talles</h3>
-                <ul>
-                    <li><input type="checkbox" name="size" value="s">S</li>
-                    <li><input type="checkbox" name="size" value="m">M</li>
-                    <li><input type="checkbox" name="size" value="l">L</li>
+                <h6>Talle Calzado</h6>
+                <ul class="list-group">
+                    <?php
+                        $sql = "SELECT DISTINCT product_talle FROM products_filter ORDER BY product_talle";
+                        $result = $con->query($sql);
+                        while($row=$result->fetch_assoc()) {
+                    ?>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input product_check"
+                                        value="<?= $row['product_talle']; ?>" id="product_talle"><?= $row['product_talle']; ?>
+                                </label>
+                            </div>
+                        </li>
+                    <?php } ?>
                 </ul>
-                <h3>Precio</h3>
-                <div id="price-slider"></div>
-                <input type="hidden" name="min-price" id="min-price">
-                <input type="hidden" name="max-price" id="max-price">
-                <button type="submit">Filtrar</button>
-            </form>
+                <h6>Talle Indumentaria</h6>
+                <ul class="list-group">
+                    <?php
+                        $sql = "SELECT DISTINCT product_talle FROM products_filter ORDER BY product_talle";
+                        $result = $con->query($sql);
+                        while($row=$result->fetch_assoc()) {
+                    ?>
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input product_check"
+                                        value="<?= $row['product_talle']; ?>" id="product_talle"><?= $row['product_talle']; ?>
+                                </label>
+                            </div>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+
+            </div>
         </div>
-
     </main>
-
-    
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
