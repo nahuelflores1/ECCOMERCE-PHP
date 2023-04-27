@@ -1,0 +1,23 @@
+
+
+.banner-products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        position: absolute;
+        text-align: center;
+        color: white;
+        font-size: 70px;
+        display: flex;
+        align-items: center;
+        z-index: 11111111;
+        letter-spacing: 1px;
+    }
+    img {
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        filter: brightness(50%);
+    }
+}
