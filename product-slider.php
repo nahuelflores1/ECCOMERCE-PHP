@@ -92,10 +92,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <div class="glider-contain">
                 <div class="glider">
                     <?php foreach ($resultado as $row) { ?>
-                        <section class="product-box">
-                            <span class="p-discount">Sale</span>
+                    <section class="product-box">
+                        <span class="p-discount">Sale</span>
 
-                            <?php
+                        <?php
                             $id = $row['id'];
                             $imagen = "img/shoes/" . $id . "/sneakers.jpg";
 
@@ -105,19 +105,20 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                             ?>
 
-                            <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img class="p-img-container p-img w-100" src="<?php echo $imagen; ?>"></a>
-                            <div class="p-box-text">
-                                <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>" class="product-title">
-                                    <?php echo $row['nombre']; ?>
-                                </a>
-                                <div class="price-buy">
-                                    <span class="p-price">$
-                                        <?php echo $row['precio']; ?>
-                                    </span>
-                                    <a class="p-buy-btn" href="">Agregar a carrito</a>
-                                </div>
+                        <a style="width:100%; height:30vh; display:flex; align-items:center;" href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img src="<?php echo $imagen; ?>"></a>
+                        <div class="p-box-text">
+                            <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
+                                class="product-title">
+                                <?php echo $row['nombre']; ?>
+                            </a>
+                            <div class="price-buy">
+                                <span class="p-price">$
+                                    <?php echo $row['precio']; ?>
+                                </span>
+                                <a class="p-buy-btn" href="">Agregar a carrito</a>
                             </div>
-                        </section>
+                        </div>
+                    </section>
                     <?php } ?>
                 </div>
 
@@ -125,7 +126,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <button aria-label="Next" class="glider-next">»</button>
             </div>
 
-                
+
 
 
 
