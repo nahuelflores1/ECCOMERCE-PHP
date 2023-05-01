@@ -130,16 +130,16 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         </section>
         <section>
             <div class="row-main" style="padding: 100px 0px;">
-                <a class="shoes-section col-md-8 p-0">
+                <a href="product-shoes.php" class="shoes-section col-md-8 p-0">
                     <p>ZAPATILLAS</p>
                     <img src="./img/jordan-1-red-banner.jpg" alt="">
                 </a>
                 <div class="col-md-4 p-0">
-                    <a href="" class="hoddie-section col-md-12 p-0">
+                    <a href="product-hoddies.php" class="hoddie-section col-md-12 p-0">
                         <p>HODDIES</p>
                         <img src="./img/clothes-section.jpg" alt="">
                     </a>
-                    <a href="" class="t-shirts-section col-md-12 p-0">
+                    <a href="product-tshirt.php" class="t-shirts-section col-md-12 p-0">
                         <p>REMERAS</p>
                         <img src="./img/t-shirts-productos.jpg" alt="">
                     </a>
