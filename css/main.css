@@ -106,6 +106,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 300px;
+    height: 100% !important;
     padding: 15px;
     margin: 0px 20px;
     position: relative; }
@@ -116,7 +117,7 @@ body {
       width: 65px;
       height: 24px;
       color: #ffffff;
-      background-color: #ab2020;
+      background-color: red;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -134,13 +135,12 @@ body {
         object-position: center;
         object-fit: contain; }
     .glider-contain .product-box .p-box-text {
-      height: 10px;
       width: 100%;
+      align-items: center;
       text-align: center; }
-      .glider-contain .product-box .p-box-text a {
-        height: 30vh;
-        width: 30vh; }
       .glider-contain .product-box .p-box-text .product-title {
+        width: 100%;
+        overflow: hidden !important;
         color: #333333;
         font-weight: 600;
         transition: all ease 0.3s;
@@ -173,74 +173,71 @@ body {
   height: 300px;
   display: flex; }
 
-.row {
+.row-main {
+  margin-right: 0;
   display: flex;
   justify-content: center; }
-  .row .shoes-section {
+  .row-main .shoes-section {
     width: 45%;
     height: 600px;
     align-items: center;
     display: flex;
     justify-content: center;
     cursor: pointer; }
-    .row .shoes-section img {
+    .row-main .shoes-section img {
       filter: brightness(30%);
       object-fit: cover;
       width: 100%;
       height: 100%;
       object-position: 0px 0px;
       transition: transform 0.3s; }
-    .row .shoes-section p {
+    .row-main .shoes-section p {
       font-size: 50px;
       z-index: 111111;
       color: white;
       position: absolute; }
-    .row .shoes-section:hover {
+    .row-main .shoes-section:hover {
       transform: scale(1.004); }
-  .row .t-shirts-section {
+  .row-main .t-shirts-section {
     height: 300px;
     align-items: center;
     display: flex;
     justify-content: center;
     cursor: pointer; }
-    .row .t-shirts-section img {
+    .row-main .t-shirts-section img {
       filter: brightness(30%);
       object-fit: cover;
       width: 100%;
       height: 100%;
       object-position: 0px 0px;
       transition: transform 0.3s; }
-    .row .t-shirts-section p {
+    .row-main .t-shirts-section p {
       font-size: 50px;
       color: white;
       position: absolute;
       z-index: 111111; }
-    .row .t-shirts-section:hover {
+    .row-main .t-shirts-section:hover {
       transform: scale(1.004); }
-  .row .hoddie-section {
+  .row-main .hoddie-section {
     height: 300px;
     align-items: center;
     display: flex;
     justify-content: center;
     cursor: pointer; }
-    .row .hoddie-section img {
+    .row-main .hoddie-section img {
       filter: brightness(30%);
       object-fit: cover;
       width: 100%;
       height: 100%;
       object-position: 0px 0px;
       transition: transform 0.3s; }
-    .row .hoddie-section p {
+    .row-main .hoddie-section p {
       font-size: 50px;
       color: white;
       z-index: 111111;
       position: absolute; }
-    .row .hoddie-section:hover {
+    .row-main .hoddie-section:hover {
       transform: scale(1.004); }
-
-.product-title {
-  width: 300px;
-  overflow: hidden !important; }
 
 /*Sales*/
 .sale {
@@ -256,7 +253,7 @@ body {
   margin-bottom: 0; }
 
 /*Details*/
-.row {
+.row.details {
   margin-top: 100px;
   display: flex;
   flex-direction: row;
@@ -319,3 +316,53 @@ body {
     height: 50vh;
     object-fit: cover;
     filter: brightness(50%); }
+
+.row {
+  display: flex;
+  justify-content: center; }
+  .row .col-md-4 {
+    width: 35vh; }
+  .row .col-lg-3 {
+    padding: 50px; }
+    .row .col-lg-3 h6 {
+      border-radius: 20px;
+      font-size: 40px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.534);
+      color: black; }
+    .row .col-lg-3 h5 {
+      margin: 25px 0px;
+      border-bottom: 1px solid; }
+
+.text-center {
+  margin-top: 50px !important; }
+
+.card-body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; }
+
+.card-deck {
+  width: 35vh;
+  margin: 10px; }
+
+.card-img-top {
+  cursor: pointer; }
+
+#textChange {
+  font-size: 4vh; }
+
+.text-price {
+  height: 10vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; }
+  .text-price .card-title {
+    text-align: center; }
+
+.card {
+  height: 30vh;
+  width: 30vh; }
+  .card .card-img-top {
+    height: 50%;
+    object-fit: contain; }

@@ -5,7 +5,7 @@ require 'config/database.php';
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, nombre, precio FROM products WHERE activo=1");
+$sql = $con->prepare("SELECT id, nombre, precio FROM products_destacados WHERE activo=1");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -30,8 +30,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/glider.min.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
@@ -92,10 +92,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <div class="glider-contain">
                 <div class="glider">
                     <?php foreach ($resultado as $row) { ?>
-                    <section class="product-box">
-                        <span class="p-discount">Sale</span>
+                        <section class="product-box">
+                            <span class="p-discount">Sale</span>
 
-                        <?php
+                            <?php
                             $id = $row['id'];
                             $imagen = "img/shoes/" . $id . "/sneakers.jpg";
 
@@ -105,47 +105,44 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                             ?>
 
-                        <a style="width:100%; height:30vh; display:flex; align-items:center;" href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img src="<?php echo $imagen; ?>"></a>
-                        <div class="p-box-text">
-                            <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
-                                class="product-title">
-                                <?php echo $row['nombre']; ?>
-                            </a>
-                            <div class="price-buy">
-                                <span class="p-price">$
-                                    <?php echo $row['precio']; ?>
-                                </span>
-                                <a class="p-buy-btn" href="">Agregar a carrito</a>
+                            <a style="width:100%; height:30vh; display:flex;"
+                                href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
+                                    style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
+                            <div class="p-box-text">
+                                <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
+                                    class="product-title">
+                                    <?php echo $row['nombre']; ?>
+                                </a>
+                                <div class="price-buy">
+                                    <span class="p-price">$
+                                        <?php echo $row['precio']; ?>
+                                    </span>
+                                    <a class="p-buy-btn" href="">Agregar a carrito</a>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     <?php } ?>
                 </div>
 
                 <button aria-label="Previous" class="glider-prev">«</button>
                 <button aria-label="Next" class="glider-next">»</button>
             </div>
-
-
-
-
-
         </section>
         <section>
-            <div class="row" style="padding: 100px 0px;">
-                <div class="shoes-section col-md-8 p-0">
+            <div class="row-main" style="padding: 100px 0px;">
+                <a class="shoes-section col-md-8 p-0">
                     <p>ZAPATILLAS</p>
                     <img src="./img/jordan-1-red-banner.jpg" alt="">
-                </div>
+                </a>
                 <div class="col-md-4 p-0">
-                    <div class="hoddie-section col-md-12 p-0">
+                    <a href="" class="hoddie-section col-md-12 p-0">
                         <p>HODDIES</p>
                         <img src="./img/clothes-section.jpg" alt="">
-                    </div>
-                    <div class="t-shirts-section col-md-12 p-0">
+                    </a>
+                    <a href="" class="t-shirts-section col-md-12 p-0">
                         <p>REMERAS</p>
                         <img src="./img/t-shirts-productos.jpg" alt="">
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 <?php
-    $con = new mysqli("localhost","root","","tienda_sneakers");
-    if($con->connect_error){
-        die("Connection Erronea".$con->connect_error);
+    $conn = new mysqli("localhost","root","","tienda_sneakers");
+    if($conn->connect_error){
+        die("Connection Erronea".$conn->connect_error);
     }
 ?>

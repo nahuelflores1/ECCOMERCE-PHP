@@ -37,6 +37,7 @@
         display: flex;
         flex-direction: column;
         width: 300px;
+        height: 100% !important;
         padding: 15px;
         margin: 0px 20px;
         position: relative;
@@ -48,7 +49,7 @@
             width: 65px;
             height: 24px;
             color: #ffffff;
-            background-color: $principal-color;
+            background-color: rgb(255, 0, 0);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -70,14 +71,12 @@
             }
         }
         .p-box-text {
-            height: 10px;
             width: 100%;
+            align-items: center;
             text-align: center;
-            a {
-                height: 30vh;
-                width: 30vh;
-            }
             .product-title {
+                width: 100%;
+                overflow: hidden !important;
                 color: #333333;
                 font-weight: 600;
                 transition: all ease 0.3s;
@@ -120,7 +119,8 @@
     display: flex;
 }
 
-.row {
+.row-main {
+    margin-right: 0;
     display: flex;
     justify-content: center;
     .shoes-section {
@@ -196,9 +196,4 @@
             transform: scale(1.004);
         }
     }
-}
-
-.product-title {
-    width: 300px;
-    overflow: hidden !important;
 }

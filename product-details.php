@@ -17,11 +17,11 @@ if ($id == '' || $token == '') {
 
     if ($token == $token_tmp) {
 
-        $sql = $con->prepare("SELECT count(id) FROM products WHERE id=? AND activo=1");
+        $sql = $con->prepare("SELECT count(id) FROM products_destacados WHERE id=? AND activo=1");
         $sql->execute([$id]);
         if ($sql->fetchColumn() > 0) {
 
-            $sql = $con->prepare("SELECT nombre, descripcion, precio FROM products WHERE id=? AND activo=1 
+            $sql = $con->prepare("SELECT nombre, descripcion, precio FROM products_destacados WHERE id=? AND activo=1 
             LIMIT 1");
             $sql->execute([$id]);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
@@ -73,8 +73,8 @@ if ($id == '' || $token == '') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/glider.min.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
@@ -127,7 +127,7 @@ if ($id == '' || $token == '') {
     </header>
     <main>
         <div class="container">
-            <div class="row">
+            <div class="row row-details">
                 <div class="col-md-6">
                     <img src="<?php echo $img ?>" class="img-fluid" alt="Producto">
                 </div>
