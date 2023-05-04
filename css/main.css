@@ -253,7 +253,7 @@ body {
   margin-bottom: 0; }
 
 /*Details*/
-.row.details {
+.row-details {
   margin-top: 100px;
   display: flex;
   flex-direction: row;
@@ -262,7 +262,6 @@ body {
   padding: 0 !important; }
 
 .col-md-6 {
-  margin: 0px 50px;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -369,3 +368,7 @@ body {
   .card .card-img-top {
     height: 200px;
     object-fit: contain; }
+
+.card-h6 {
+  height: 100px;
+  width: 90%; }

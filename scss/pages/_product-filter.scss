@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     h1 {
         position: absolute;
         text-align: center;
@@ -12,6 +13,7 @@
         z-index: 11111111;
         letter-spacing: 1px;
     }
+
     img {
         width: 100%;
         height: 50vh;
@@ -23,16 +25,20 @@
 .row {
     display: flex;
     justify-content: center;
+
     .col-md-4 {
         width: 35vh;
     }
+
     .col-lg-3 {
         padding: 50px;
+
         h6 {
             font-size: 40px;
             text-align: center;
             border-bottom: 2px solid;
         }
+
         h5 {
             margin: 25px 0px;
             border-bottom: 1px solid;
@@ -59,11 +65,11 @@
     cursor: pointer;
 }
 
-#textChange{
+#textChange {
     font-size: 4vh;
 }
 
-.col-lg-6{
+.col-lg-6 {
     display: flex;
     flex-direction: none !important;
 }
@@ -73,6 +79,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
     .card-title {
         font-size: 17px;
         text-align: center;
@@ -80,10 +87,17 @@
 }
 
 .card {
-    display: flex ;
-    align-items: center ;
+    display: flex;
+    align-items: center;
+
     .card-img-top {
         height: 200px;
         object-fit: contain;
     }
+}
+
+
+.card-h6 {
+    height: 100px;
+    width: 90%;
 }

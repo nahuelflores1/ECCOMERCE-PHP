@@ -127,7 +127,7 @@ if ($id == '' || $token == '') {
     </header>
     <main>
         <div class="container">
-            <div class="row row-details">
+            <div class="row-details">
                 <div class="col-md-6">
                     <img src="<?php echo $img ?>" class="img-fluid" alt="Producto">
                 </div>

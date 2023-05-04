@@ -114,7 +114,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                                     <?php echo $row['nombre']; ?>
                                 </a>
                                 <div class="price-buy">
-                                    <span class="p-price">$
+                                    <span class="p-price">Precio :$
                                         <?php echo $row['precio']; ?>
                                     </span>
                                     <a class="p-buy-btn" href="">Agregar a carrito</a>

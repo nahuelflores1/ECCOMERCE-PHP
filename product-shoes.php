@@ -127,11 +127,11 @@ require 'config/config.php'
                         $result=$conn->query($sql);
                         while($row=$result->fetch_assoc()){
                         ?>
-                        <div class="col-md-6" style="width:30vh;">
+                        <div class="col-md-6-filter col-md-6" style="width:30vh; margin: 0px 50px;">
                             <div class="card-deck">
-                                <div class="card" style="">
+                                <div class="card">
                                     <img  src="data:images/jpg;base64, <?php echo base64_encode($row['product_image']);  ?>" class="card-img-top">
-                                    <div style="height:100px; width:90%; ">
+                                    <div style="height: 100px; width: 90%;">
                                         <h6 style="cursor:pointer;" class="card-title text-center"><?= $row['product_name']; ?></h6>
                                     </div>
                                     <div class="text-price">
