@@ -37,7 +37,6 @@
         display: flex;
         flex-direction: column;
         width: 300px;
-        height: 100% !important;
         padding: 15px;
         margin: 0px 20px;
         position: relative;
@@ -71,12 +70,14 @@
             }
         }
         .p-box-text {
+            height: 125px;
+            display: flex;
             width: 100%;
-            align-items: center;
             text-align: center;
+            flex-direction: column;
+            justify-content: space-between;
             .product-title {
                 width: 100%;
-                overflow: hidden !important;
                 color: #333333;
                 font-weight: 600;
                 transition: all ease 0.3s;
@@ -89,8 +90,6 @@
             }
             .price-buy {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
                 flex-direction: column;
                 margin-top: 8px;
                 .p-price {

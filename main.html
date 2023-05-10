@@ -82,6 +82,64 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </nav>
     </header>
+    <section class="section">
+        <div class="wrapper">
+            <div class="logreg-box">
+                <div class="form-box login">
+                    <div class="logreg-title">
+                        <h2>Login</h2>
+                        <p>Please login to use the platform</p>
+                    </div>
+
+                    <form action="#">
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" require>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" require>
+                            <label>Contrasena</label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Recordarme</label>
+                            <a href="#">Olvidaste tu contrasena?</a>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Login</button>
+
+                        <div class="logreg-link">
+                            <p>No tenes cuenta? <a class="register-link" href="#">Registrarse</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="media-options">
+                <a href="#">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Ingresar con Google</span>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                    <span>Ingresar con Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
     <main>
         <section class="banner">
             <h1>SOMOS LA MARCA Nº1 DEL PAIS</BR> EN EXCLUSIVDAD</h1>
@@ -92,10 +150,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <div class="glider-contain">
                 <div class="glider">
                     <?php foreach ($resultado as $row) { ?>
-                        <section class="product-box">
-                            <span class="p-discount">Sale</span>
+                    <section class="product-box">
+                        <span class="p-discount">Sale</span>
 
-                            <?php
+                        <?php
                             $id = $row['id'];
                             $imagen = "img/shoes/" . $id . "/sneakers.jpg";
 
@@ -105,22 +163,22 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                             ?>
 
-                            <a style="width:100%; height:30vh; display:flex;"
-                                href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
-                                    style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
-                            <div class="p-box-text">
-                                <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
-                                    class="product-title">
-                                    <?php echo $row['nombre']; ?>
-                                </a>
-                                <div class="price-buy">
-                                    <span class="p-price">Precio :$
-                                        <?php echo $row['precio']; ?>
-                                    </span>
-                                    <a class="p-buy-btn" href="">Agregar a carrito</a>
-                                </div>
+                        <a style="width:100%; height:30vh; display:flex;"
+                            href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
+                                style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
+                        <div class="p-box-text">
+                            <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
+                                class="product-title">
+                                <?php echo $row['nombre']; ?>
+                            </a>
+                            <div class="price-buy">
+                                <span class="p-price">Precio: $
+                                    <?php echo $row['precio']; ?>
+                                </span>
+                                <a class="p-buy-btn" href="">Agregar a carrito</a>
                             </div>
-                        </section>
+                        </div>
+                    </section>
                     <?php } ?>
                 </div>
 
@@ -147,9 +205,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </section>
     </main>
-    <footer>
-
-    </footer>
     <script src="js/glider.min.js"></script>
     <script>
         new Glider(document.querySelector('.glider'), {
