@@ -377,9 +377,6 @@ body {
   background-size: cover;
   background-position: center; }
 
-.wrapper .form-box.login {
-  display: block; }
-
 .wrapper .form-box.register {
   display: none; }
 
@@ -423,6 +420,12 @@ body {
         text-decoration: none;
         font-weight: 600; }
         .wrapper .logreg-box .logreg-link .register-link:hover {
+          text-decoration: underline; }
+      .wrapper .logreg-box .logreg-link .login-link {
+        color: black;
+        text-decoration: none;
+        font-weight: 600; }
+        .wrapper .logreg-box .logreg-link .login-link:hover {
           text-decoration: underline; }
     .wrapper .logreg-box .logreg-title {
       text-align: center;
