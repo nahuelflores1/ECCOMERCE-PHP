@@ -6,44 +6,46 @@
 .wrapper {
     position: absolute;
     top: 0;
+    border-radius: 0px 0px 0px 20px;
     right: 0;
     width: 450px;
-    height: 100%;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.2);
-    border-left: 2px solid rgba(255,255,255, .1);
+    height: 64%;
+    background: rgba(255, 255, 255, 0.904);
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
     z-index: 100;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 0 40px ;
+    padding: 0 40px;
     .logreg-box {
         width: 100%;
         .btn-submit {
             width: 100%;
             height: 45px;
-            background: #fff;
+            background: black;
             border: none;
             outline: none;
             border-radius: 40px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             font-size: 16px;
-            color: #222;
+            color: white;
             font-weight: 600;
+            letter-spacing: 1px;
         }
         .logreg-link {
             font-size: 14.5px;
-            color: #fff;
+            color: black;
             text-align: center;
             font-weight: 500;
             margin: 25px 0 15px;
-            .register-link{
-                color: #fff;
+            .register-link {
+                color: black;
                 text-decoration: none;
                 font-weight: 600;
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
             }
@@ -51,13 +53,9 @@
         .logreg-title {
             text-align: center;
             margin-bottom: 40px;
-            color: #fff;
+            color: black;
             h2 {
                 font-size: 32px;
-            }
-            p {
-                font-size: 14px;
-                font-weight: 500;
             }
         }
         .input-box {
@@ -65,7 +63,7 @@
             width: 100%;
             height: 50px;
             margin: 30px 0px;
-            border-bottom: 2px solid #fff;
+            border-bottom: 2px solid black;
             input {
                 width: 100%;
                 height: 100%;
@@ -73,7 +71,7 @@
                 border: none;
                 outline: none;
                 font-size: 16px;
-                color: #fff;
+                color: black;
                 font-weight: 500;
                 padding-right: 25px;
             }
@@ -82,7 +80,7 @@
                 left: 0;
                 transform: translateY(-50%);
                 font-size: 16px;
-                color: #fff;
+                color: black;
                 font-weight: 500;
                 pointer-events: none;
                 transition: 0.5s;
@@ -93,58 +91,61 @@
                 right: 0;
                 transform: translateY(-50%);
                 font-size: 19px;
-                color: #fff;
+                color: black;
             }
         }
         .remember-forgot {
             font-size: 14.5px;
-            color: #fff;
+            color: black;
             font-weight: 500;
             margin: -15px 0 15px;
             display: flex;
             justify-content: space-between;
             a {
-                color: #fff;
+                color: black;
                 text-decoration: none;
                 &:hover {
                     text-decoration: underline;
                 }
             }
             label {
+                align-items: center;
+                display: flex;
                 input {
-                    accent-color: #eb0e0e;
+                    border-radius: 50%;
+                    accent-color: black;
                     margin-right: 3px;
                 }
             }
         }
     }
-    .media-options{
+    .media-options {
         display: flex;
         flex-direction: column;
         align-items: center;
-        a{
+        a {
             display: inline-flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             height: 50px;
-            border: 2px solid #fff;
+            border: 2px solid black;
             margin: 10px 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             border-radius: 40px;
-            color: #fff;
+            color: black;
             text-decoration: none;
-            transition: .5s;
-            &:hover{
-                background: rgba(255,255,255, .1);
+            transition: 0.5s;
+            &:hover {
+                background: rgba(63, 55, 55, 0.3);
             }
-            i{
+            i {
                 margin: 0 8px 1.5px 0;
                 font-size: 22px;
             }
-            span{
+            span {
                 font-size: 16px;
-                font-weight: 500
+                font-weight: 500;
             }
         }
     }
