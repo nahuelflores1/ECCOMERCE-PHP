@@ -196,7 +196,7 @@ session_destroy();
                             }
 
                             ?>
-                            
+
                             <a style="width:100%; height:30vh; display:flex;"
                                 href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
                                     style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
@@ -209,9 +209,11 @@ session_destroy();
                                     <span class="p-price">Precio: $
                                         <?php echo $row['product_precio']; ?>
                                     </span>
-                                    <button type="button"
-                                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')"
-                                        class="p-buy-btn" href="">Agregar a carrito</button>
+                                    <button class="p-buy-btn" style="background: none; border: none; " href="#"
+                                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')">
+                                        Agregar a carrito
+                                    </button>
+
                                 </div>
                             </div>
                         </section>
