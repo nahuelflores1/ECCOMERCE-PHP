@@ -54,7 +54,7 @@ require 'config/config.php'
                     </div>
                 </div>
                 <div class="col-4">
-                    <a class="navbar-brand" href="#"><img src="./img/kicksmarket.png" alt=""></a>
+                    <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <ul class="navbar-nav">
@@ -62,16 +62,111 @@ require 'config/config.php'
                             <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </li>
                         <li class="icon-navbar nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-user"></i></a>
+                            <a class="nav-link" href="#"><i class="fa-user fa-solid" id="user-icon"></i></a>
                         </li>
+                        <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="./config/carrito.php" class="btn btn-primary">
+                                Carrito<span id="num_cart" class="badge bg-secondary">
+                                    <?php echo $num_cart ?>
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <section class="section">
+        <div class="wrapper hidden">
+            <div class="logreg-box">
+                <!-- LOGIN SECTION-->
+                <div id="login-form" class="form-box">
+                    <div class="logreg-title">
+                        <h2>Iniciar</h2>
+                        <?php
+                        if (isset($_GET['mensaje_bienvenida'])) {
+                            $mensaje_bienvenida = $_GET['mensaje_bienvenida'];
+                            echo '<div id="mensaje-bienvenida">' . $mensaje_bienvenida . '</div>';
+                        }
+                        ?>
+                    </div>
+                    <form action="config/login_us.php" method="POST">
+                        <div class=" input-box">
+                            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" name="email" require>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" name="password" require>
+                            <label>Contraseña</label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Recordarme</label>
+                            <a href="#">Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <button name="btnIngresar" type="submit" class="btn-submit">Iniciar Sesion</button>
+
+
+                        <div class="logreg-link">
+                            <p>No tenes cuenta? <a href="#" class="register-link">Registrarse</a></p>
+                        </div>
+                    </form>
+                </div>
+                <!-- REGISTER SECTION-->
+                <div id="register-form" class="form-box register">
+                    <div class="logreg-title">
+                        <h2>Registrarse</h2>
+                    </div>
+
+                    <form action="config/registro_us.php" method="POST">
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" name="names" require>
+                            <label>Nombre Completo</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" name="email" require>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" name="password" require>
+                            <label>Contraseña</label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">¿Estas de acuerdo con los terminos y condiciones?</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Registrarse</button>
+
+                        <div class="logreg-link">
+                            <p>Ya tenes una cuenta? <a href="#" class="login-link">Iniciar</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="media-options">
+                <a href="#">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Ingresar con Google</span>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                    <span>Ingresar con Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <main>
         <section class="banner">
             <h1>ZAPATILLAS</h1>
@@ -137,6 +232,9 @@ require 'config/config.php'
                                     <div class="text-price">
                                         <h4 class=" card-title text-danger">Precio : $<?= number_format($row['product_precio']); ?></h4>
                                     </div>
+                                    <button type="button"
+                                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')"
+                                        class="p-buy-btn" href="">Agregar a carrito</button>
                                 </div>
                             </div>
                         </div>
@@ -144,9 +242,31 @@ require 'config/config.php'
                     </div>
                 </div> 
             </div>
-
+        </section>
             
     </main> 
+    <script>
+        function addProducto(id, token) {
+            let url = './config/carrito.php';
+            let formData = new FormData();
+            formData.append('id', id);
+            formData.append('token', token);
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        let elemento = document.getElementById("num_cart");
+                        elemento.innerHTML = data.numero;
+                    }
+                });
+        }
+    </script>
+    <script src="js/script.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
 

@@ -1,13 +1,16 @@
 <?php
 
-require 'config/config.php';
-require 'config/database.php';
+require './config/config.php';
+require './config/database.php';
+
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, nombre, precio FROM products_destacados WHERE activo=1");
+$sql = $con->prepare("SELECT id, product_name, product_precio FROM products_destacados WHERE activo=1");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+session_destroy();
 
 ?>
 
@@ -30,8 +33,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/glider.min.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
+    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
@@ -64,7 +67,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <div class="col-4">
-                    <a class="navbar-brand" href="#"><img src="./img/kicksmarket.png" alt=""></a>
+                    <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <ul class="navbar-nav">
@@ -72,10 +75,15 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </li>
                         <li class="icon-navbar nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-user"></i></a>
+                            <a class="nav-link" href="#"><i class="fa-user fa-solid" id="user-icon"></i></a>
                         </li>
+                        <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="./config/carrito.php" class="btn btn-primary">
+                                Carrito<span id="num_cart" class="badge bg-secondary">
+                                    <?php echo $num_cart ?>
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -83,24 +91,23 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         </nav>
     </header>
     <section class="section">
-        <div class="wrapper">
+        <div class="wrapper hidden">
             <div class="logreg-box">
-                <!-- REGISTER SECTION-->
-                <div class="form-box login" id="login-form">
+                <!-- LOGIN SECTION-->
+                <div id="login-form" class="form-box">
                     <div class="logreg-title">
                         <h2>Iniciar</h2>
                     </div>
-
-                    <form action="#">
-                        <div class="input-box">
+                    <form action="config/login_us.php" method="POST">
+                        <div class=" input-box">
                             <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="email" require>
+                            <input type="email" name="email" require>
                             <label>Email</label>
                         </div>
 
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                            <input type="password" require>
+                            <input type="password" name="password" require>
                             <label>Contraseña</label>
                         </div>
 
@@ -109,7 +116,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <a href="#">Olvidaste tu contraseña?</a>
                         </div>
 
-                        <button type="submit" class="btn-submit">Iniciar Sesion</button>
+                        <button name="btnIngresar" type="submit" class="btn-submit">Iniciar Sesion</button>
+
 
                         <div class="logreg-link">
                             <p>No tenes cuenta? <a href="#" class="register-link">Registrarse</a></p>
@@ -117,27 +125,27 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </form>
                 </div>
                 <!-- REGISTER SECTION-->
-                <div class="form-box register" id="register-form">
+                <div id="register-form" class="form-box register">
                     <div class="logreg-title">
                         <h2>Registrarse</h2>
                     </div>
 
-                    <form action="#">
+                    <form action="config/registro_us.php" method="POST">
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" require>
+                            <input type="text" name="names" require>
                             <label>Nombre Completo</label>
                         </div>
 
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="email" require>
+                            <input type="email" name="email" require>
                             <label>Email</label>
                         </div>
 
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                            <input type="password" require>
+                            <input type="password" name="password" require>
                             <label>Contraseña</label>
                         </div>
 
@@ -166,16 +174,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
     <main>
         <section class="banner">
             <h1>SOMOS LA MARCA Nº1 DEL PAIS</BR> EN EXCLUSIVDAD</h1>
@@ -186,10 +184,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             <div class="glider-contain">
                 <div class="glider">
                     <?php foreach ($resultado as $row) { ?>
-                    <section class="product-box">
-                        <span class="p-discount">Sale</span>
+                        <section class="product-box">
+                            <span class="p-discount">Sale</span>
 
-                        <?php
+                            <?php
                             $id = $row['id'];
                             $imagen = "img/shoes/" . $id . "/sneakers.jpg";
 
@@ -198,23 +196,25 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                             }
 
                             ?>
-
-                        <a style="width:100%; height:30vh; display:flex;"
-                            href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
-                                style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
-                        <div class="p-box-text">
-                            <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
-                                class="product-title">
-                                <?php echo $row['nombre']; ?>
-                            </a>
-                            <div class="price-buy">
-                                <span class="p-price">Precio: $
-                                    <?php echo $row['precio']; ?>
-                                </span>
-                                <a class="p-buy-btn" href="">Agregar a carrito</a>
+                            
+                            <a style="width:100%; height:30vh; display:flex;"
+                                href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
+                                    style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
+                            <div class="p-box-text">
+                                <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
+                                    class="product-title">
+                                    <?php echo $row['product_name']; ?>
+                                </a>
+                                <div class="price-buy">
+                                    <span class="p-price">Precio: $
+                                        <?php echo $row['product_precio']; ?>
+                                    </span>
+                                    <button type="button"
+                                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')"
+                                        class="p-buy-btn" href="">Agregar a carrito</button>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     <?php } ?>
                 </div>
 
@@ -241,6 +241,26 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </section>
     </main>
+    <script>
+        function addProducto(id, token) {
+            let url = './config/carrito.php'
+            let formData = new FormData()
+            formData.append('id', id)
+            formData.append('token', token)
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors'
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        let elemento = document.getElementById("num_cart");
+                        elemento.innerHTML = data.numero
+                    }
+                })
+        }
+    </script>
     <script src="js/script.js"></script>
     <script src="js/glider.min.js"></script>
     <script>
