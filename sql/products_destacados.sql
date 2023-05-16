@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2023 a las 01:18:33
+-- Tiempo de generación: 16-05-2023 a las 02:04:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,30 +29,31 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `products_destacados` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL,
-  `descripcion` text NOT NULL,
-  `precio` decimal(10,0) NOT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_description` varchar(255) DEFAULT NULL,
+  `product_precio` varchar(255) DEFAULT NULL,
   `id_categoria` int(11) NOT NULL,
-  `activo` int(11) NOT NULL
+  `activo` int(11) NOT NULL,
+  `product_image` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `products_destacados`
 --
 
-INSERT INTO `products_destacados` (`id`, `nombre`, `descripcion`, `precio`, `id_categoria`, `activo`) VALUES
-(2, 'Jordan 1 Retro High Silver Toe (W)', 'Jordan 1 Retro High Silver Toe (W)', 385, 1, 1),
-(3, 'Jordan 3 Retro White Cement Reimagined', 'Jordan 3 Retro White Cement Reimagined', 350, 1, 1),
-(4, 'Jordan 4 Retro Seafoam (Women\'s)', 'Jordan 4 Retro Seafoam (Women\'s)', 385, 1, 1),
-(5, 'Nike Dunk LowActive Fuchsia', 'Nike Dunk LowActive Fuchsia', 127, 1, 1),
-(6, 'Jordan 81 Short Blue', 'Jordan 81 Short Blue', 120, 1, 1),
-(7, 'Nike Dunk Low Citron Pulse', 'Nike Dunk Low Citron Pulse', 128, 1, 1),
-(8, 'Jordan Dri-FIT Air Fleece Pullover Hoodie', 'Jordan Dri-FIT Air Fleece Pullover Hoodie', 152, 1, 1),
-(9, 'Adidas Yeezy Boost 350 V2 Beluga Reflective', 'Adidas Yeezy Boost 350 V2 Beluga Reflective', 300, 1, 1),
-(10, ' Jordan 1 Low SE Concord (GS)', ' Jordan 1 Low SE Concord (GS)', 250, 1, 1),
-(11, 'Adidas Yeezy Boost 700 Wave Runner', 'Adidas Yeezy Boost 700 Wave Runner', 600, 1, 1),
-(12, 'Jordan 1 Retro High OG Lucky Green', 'Jordan 1 Retro High OG Lucky Green', 450, 1, 1),
-(13, 'Air Jordan 4 SB', 'The Air Jordan 4 SB “Pine Green” is an alternate version of the retro basketball shoe that’s updated with a performance skateboarding focus. A collaboration between Nike SB and Jordan Brand on Michael Jordan’s fourth signature shoe, the Jordan 4 SB is designed in a smooth white leather upper with a light grey suede overlay on the toe and forefoot. Contrasting Pine Green detailing appears on the heel counter with “Nike SB” branding and on the plastic eyelets. Tonal mesh is found on the mid-panel and tongue', 680, 1, 1);
+INSERT INTO `products_destacados` (`id`, `product_name`, `product_description`, `product_precio`, `id_categoria`, `activo`, `product_image`) VALUES
+(2, 'Jordan 1 Retro High Silver Toe (W)', 'Jordan 1 Retro High Silver Toe (W)', '385', 1, 1, NULL),
+(3, 'Jordan 3 Retro White Cement Reimagined', 'Jordan 3 Retro White Cement Reimagined', '350', 1, 1, NULL),
+(4, 'Jordan 4 Retro Seafoam (Women\'s)', 'Jordan 4 Retro Seafoam (Women\'s)', '385', 1, 1, NULL),
+(5, 'Nike Dunk LowActive Fuchsia', 'Nike Dunk LowActive Fuchsia', '127', 1, 1, NULL),
+(6, 'Jordan 81 Short Blue', 'Jordan 81 Short Blue', '120', 1, 1, NULL),
+(7, 'Nike Dunk Low Citron Pulse', 'Nike Dunk Low Citron Pulse', '128', 1, 1, NULL),
+(8, 'Jordan Dri-FIT Air Fleece Pullover Hoodie', 'Jordan Dri-FIT Air Fleece Pullover Hoodie', '152', 1, 1, NULL),
+(9, 'Adidas Yeezy Boost 350 V2 Beluga Reflective', 'Adidas Yeezy Boost 350 V2 Beluga Reflective', '300', 1, 1, NULL),
+(10, ' Jordan 1 Low SE Concord (GS)', ' Jordan 1 Low SE Concord (GS)', '250', 1, 1, NULL),
+(11, 'Adidas Yeezy Boost 700 Wave Runner', 'Adidas Yeezy Boost 700 Wave Runner', '600', 1, 1, NULL),
+(12, 'Jordan 1 Retro High OG Lucky Green', 'Jordan 1 Retro High OG Lucky Green', '450', 1, 1, NULL),
+(13, 'Air Jordan 4 SB', 'The Air Jordan 4 SB “Pine Green” is an alternate version of the retro basketball shoe that’s updated with a performance skateboarding focus. A collaboration between Nike SB and Jordan Brand on Michael Jordan’s fourth signature shoe, the Jordan 4 SB is des', '680', 1, 1, NULL);
 
 --
 -- Índices para tablas volcadas
