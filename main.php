@@ -6,11 +6,11 @@ require './config/database.php';
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, product_name, product_precio FROM products_destacados WHERE activo=1");
+$sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM products_destacados WHERE activo=1");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-session_destroy();
+//session_destroy();
 
 ?>
 
@@ -180,49 +180,49 @@ session_destroy();
             <img src="./img/yezzy-banner.jpg" alt="">
         </section>
         <section>
-            <h3 class="p-slider">PRODUCTOS DESTACADOS</h3>
-            <div class="glider-contain">
-                <div class="glider">
-                    <?php foreach ($resultado as $row) { ?>
-                        <section class="product-box">
-                            <span class="p-discount">Sale</span>
+            <section>
+                <h3 class="p-slider">PRODUCTOS DESTACADOS</h3>
+                <div class="glider-contain">
+                    <div class="glider">
+                        <?php foreach ($resultado as $row) { ?>
+                            <section class="product-box">
+                                <span class="p-discount">Sale</span>
+                                <?php
+                                $id = 'D' . $row['id']; // Agregar prefijo "D"
+                                $imagenData = $row['product_image'];
+                                $imagen = 'data:image/jpeg;base64,' . base64_encode($imagenData);
+                                ?>
 
-                            <?php
-                            $id = $row['id'];
-                            $imagen = "img/shoes/" . $id . "/sneakers.jpg";
-
-                            if (!file_exists($imagen)) {
-                                $imagen = "img/no-photo.jpg";
-                            }
-
-                            ?>
-
-                            <a style="width:100%; height:30vh; display:flex;"
-                                href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"><img
-                                    style="object-fit:contain;" src="<?php echo $imagen; ?>"></a>
-                            <div class="p-box-text">
-                                <a href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
-                                    class="product-title">
-                                    <?php echo $row['product_name']; ?>
+                                <a style="width:100%; height:30vh; display:flex;"
+                                    href="product-details.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>">
+                                    <img style="object-fit:contain;" src="<?php echo $imagen; ?>">
                                 </a>
-                                <div class="price-buy">
-                                    <span class="p-price">Precio: $
-                                        <?php echo $row['product_precio']; ?>
-                                    </span>
-                                    <button class="p-buy-btn" style="background: none; border: none; " href="#"
-                                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')">
-                                        Agregar a carrito
-                                    </button>
 
+                                <div class="p-box-text">
+                                    <a href="product-details.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>"
+                                        class="product-title">
+                                        <?php echo $row['product_name']; ?>
+                                    </a>
+                                    <div class="price-buy">
+                                        <span class="p-price">Precio: $
+                                            <?php echo $row['product_precio']; ?>
+                                        </span>
+                                        <button class="p-buy-btn" style="background: none; border: none;" href="#"
+                                            onclick="addProductoDestacado('<?php echo $id; ?>', '<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>')">
+                                            Agregar a carrito
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
-                    <?php } ?>
+                            </section>
+                        <?php } ?>
+                    </div>
                 </div>
+
 
                 <button aria-label="Previous" class="glider-prev">«</button>
                 <button aria-label="Next" class="glider-next">»</button>
-            </div>
+                </div>
+            </section>
         </section>
         <section>
             <div class="row-main" style="padding: 100px 0px;">
@@ -244,7 +244,7 @@ session_destroy();
         </section>
     </main>
     <script>
-        function addProducto(id, token) {
+        function addProductoDestacado(id, token) {
             let url = './config/carrito.php'
             let formData = new FormData()
             formData.append('id', id)

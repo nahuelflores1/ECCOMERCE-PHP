@@ -1,9 +1,43 @@
 <?php
-require 'config/database.php';
-require 'config/config-filter.php';
-require 'config/config.php'
-?>
 
+require './config/config.php';
+require './config/database.php';
+
+$db = new Database();
+$con = $db->conectar();
+
+$producto = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
+
+$lista_carrito = array();
+
+if ($producto != null) {
+    foreach ($producto as $clave => $cantidad) {
+        $table = substr($clave, 0, 1) === 'D' ? 'products_destacados' : 'products_shoes';
+        $id = substr($clave, 1); 
+        $sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM $table WHERE id=:id");
+        $sql->execute([':id' => $id]);
+        $producto_carrito = $sql->fetch(PDO::FETCH_ASSOC);
+
+
+        $sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM products_destacados WHERE activo=1");
+        $sql->execute();
+        $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
+        if ($producto_carrito) {
+            $producto_carrito['cantidad'] = $cantidad;
+            $lista_carrito[] = $producto_carrito;
+        }
+    }
+
+}
+
+$sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM products_destacados WHERE activo=1");
+$sql->execute();
+$resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+//session_destroy();
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -12,17 +46,21 @@ require 'config/config.php'
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ken block Cars, Ken Garage, Life of Kenblock, Shop Kenblock">
+    <meta name="keywords" content="Cars, kenblock, Hoonigan Racing, Motorbikes, Garage, high performance ">
+    <meta name="author" content="hoonigan racing">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
     <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
-    <title>KicksMarket</title>
+    <title>Carrito</title>
 </head>
 
 <body>
@@ -84,12 +122,6 @@ require 'config/config.php'
                 <div id="login-form" class="form-box">
                     <div class="logreg-title">
                         <h2>Iniciar</h2>
-                        <?php
-                        if (isset($_GET['mensaje_bienvenida'])) {
-                            $mensaje_bienvenida = $_GET['mensaje_bienvenida'];
-                            echo '<div id="mensaje-bienvenida">' . $mensaje_bienvenida . '</div>';
-                        }
-                        ?>
                     </div>
                     <form action="config/login_us.php" method="POST">
                         <div class=" input-box">
@@ -166,136 +198,71 @@ require 'config/config.php'
             </div>
         </div>
     </section>
-    
+
     <main>
-        <section class="banner">
-            <h1>ZAPATILLAS</h1>
-            <img src="./img/banner-shoess.jpg" alt="">
-        </section>
-            <div class="row">
-                <div class="col-lg-3">
-                    <h6>CATEGORIAS</h6>
-                    <h5>MARCAS ZAPATILLAS</h5>
-                    <ul class="list-group">
-                        <?php
-                            $sql = "SELECT DISTINCT product_marca FROM products_shoes ORDER BY product_marca";
-                            $result = $conn->query($sql);
-                            while($row=$result->fetch_assoc()) {
-                        ?>
-                            <li class="list-group-item">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="product_check form-check-input "
-                                            value="<?= $row['product_marca']; ?>" id="product_marca"><?= $row['product_marca']; ?>
-                                    </label>
-                                </div>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                    <h5>TALLE CALZADO</h5>
-                    <ul class="list-group">
-                        <?php
-                            $sql = "SELECT DISTINCT product_talle FROM products_shoes ORDER BY product_talle";
-                            $result = $conn->query($sql);
-                            while($row=$result->fetch_assoc()) {
-                        ?>
-                            <li class="list-group-item">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="product_check form-check-input "
-                                            value="<?= $row['product_talle']; ?>" id="product_talle"><?= $row['product_talle']; ?>
-                                    </label>
-                                </div>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-                <div class="col-lg-9">
-                    <h5 class="text-center" id="textChange">TODOS LOS PRODUCTOS
-                    </h5>
-                    <div class="text-center">
-                        <img src="img/loader.gif" alt="loader" width="200" style="display:none;">
-                    </div>                   
-                    <div class="row" id="result">
-                        <?php
-                            $sql = "SELECT * FROM products_shoes";
-                            $result = $conn->query($sql);
-                            while ($row = $result->fetch_assoc()) {
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>PRODUCTOS</th>
+                            <th></th>
+                            <th>PRECIO</th>
+                            <th>CANTIDAD</th>
+                            <th>SUBTOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($lista_carrito == null) {
+                            echo '<tr><td colspan="6" class="text-center"><b>Lista Vacía</b></td></tr>';
+                        } else {
+                            $total = 0;
+                            foreach ($lista_carrito as $producto) {
+                                $_id = $producto['id'];
+                                $nombre = $producto['product_name'];
+                                $precio = $producto['product_precio'];
+                                $cantidad = $producto['cantidad'];
+                                $subtotal = $cantidad * $precio;
+                                $total += $subtotal;
+                                $product_image = $producto['product_image'];
+                                $imagenData = base64_encode($product_image);
+                                $imagen = 'data:image/jpeg;base64,' . $imagenData;
                                 ?>
-                            <div class="col-md-6-filter col-md-6" style="width:30vh; margin: 0px 50px;">
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <img src="data:images/jpg;base64, <?php echo base64_encode($row['product_image']); ?>" class="card-img-top">
-                                            <div style="height: 100px; width: 90%;">
-                                                <h6 style="cursor:pointer;" class="card-title text-center"><?= $row['product_name']; ?></h6>
-                                            </div>
-                                            <div class="text-price">
-                                                <h4 class="card-title text-danger">Precio: $<?= number_format($row['product_precio']); ?></h4>
-                                            </div>
-                                        <button type="button" onclick="addProducto('S<?php echo $row['id']; ?>', '<?php echo hash_hmac('sha1', 'S' . $row['id'], KEY_TOKEN); ?>')" class="p-buy-btn" href="">Agregar a carrito</button>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div> 
+                                <tr>
+                                    <td>
+                                        <img src="<?php echo $imagen; ?>" alt="<?php echo $nombre; ?>" width="50" height="50">
+                                    </td>
+                                    <td>
+                                        <?php echo $nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo MONEDA . number_format($precio, 2, '.', ','); ?>
+                                    </td>
+                                    <td>
+                                        <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad ?>" size="5"
+                                            id="cantidad_<?php echo $_id; ?>" onchange="">
+                                    </td>
+                                    <td>
+                                        <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?></div>
+                                    </td>
+                                    <td>
+                                        <a href="#" id="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>"
+                                            data-bs-toggle="modal" data-bs-target="eliminaModal">Eliminar</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    <?php } ?>
+                </table>
             </div>
-        </section>
-            
-    </main> 
-    <script>
-        function addProducto(id, token) {
-            let url = './config/carrito.php';
-            let formData = new FormData();
-            formData.append('id', id);
-            formData.append('token', token);
+        </div>
 
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-                mode: 'cors'
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        let elemento = document.getElementById("num_cart");
-                        elemento.innerHTML = data.numero;
-                    }
-                });
-        }
-    </script>
+    </main>
     <script src="js/script.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 
-            $(".product_check").click(function(){
-                $("#loader").show();
-
-                var action = 'data';
-                var product_talle =get_filter_text('product_talle');
-                var product_marca =get_filter_text('product_marca');
-
-                $.ajax({
-                    url:'action.php',
-                    method: 'POST',
-                    data:{action:action,product_marca:product_marca,product_talle:product_talle},
-                    success:function(response){
-                        $("#result").html(response);
-                        $("#loader").hide();
-                        $("#textChange").text("FILTRO DE PRODUCTOS");
-                    }
-                });
-            });
-
-            function get_filter_text(text_id){
-                var filterData = [];
-                $('#'+text_id+':checked').each(function(){
-                    filterData.push($(this).val());
-                });
-                return filterData;
-            }
-        });
-    </script>
 </body>
 
 </html>
