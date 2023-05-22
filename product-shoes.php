@@ -66,7 +66,7 @@ require 'config/config.php'
                         </li>
                         <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a href="./config/carrito.php" class="btn btn-primary">
+                            <a href="./config/product-cart.php" class="btn btn-primary">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -232,7 +232,7 @@ require 'config/config.php'
                                             <div class="text-price">
                                                 <h4 class="card-title text-danger">Precio: $<?= number_format($row['product_precio']); ?></h4>
                                             </div>
-                                        <button type="button" onclick="addProducto('S<?php echo $row['id']; ?>', '<?php echo hash_hmac('sha1', 'S' . $row['id'], KEY_TOKEN); ?>')" class="p-buy-btn" href="">Agregar a carrito</button>
+                                        <button class="btn-shoes" onclick="addProducto('S<?php echo $row['id']; ?>', '<?php echo hash_hmac('sha1', 'S' . $row['id'], KEY_TOKEN); ?>')" href="">Agregar a carrito</button>
                                     </div>
                                 </div>
                             </div>
@@ -240,9 +240,9 @@ require 'config/config.php'
                     </div>
                 </div> 
             </div>
-        </section>
-            
+        </section> 
     </main> 
+
     <script>
         function addProducto(id, token) {
             let url = './config/carrito.php';

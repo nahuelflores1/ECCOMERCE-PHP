@@ -24,22 +24,22 @@ require './config/database.php';
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $output .= '<div class="col-md-6-filter col-md-6" style="width:30vh; margin: 0px 50px;">
-                    <div class="card-deck">
-                        <div class="card">
-                            <img src="data:image/jpg;base64,' . base64_encode($row['product_image']) . '" class="card-img-top">
-                            <div style="height: 100px; width: 90%;">
-                                <h6 style="cursor:pointer;" class="card-title text-center">' . $row['product_name'] . '</h6>
+                    $output .= '
+                    <div class="col-md-6-filter col-md-6" style="width:30vh; margin: 0px 50px;">
+                        <div class="card-deck">
+                            <div class="card">
+                                <img src="data:image/jpg;base64,' . base64_encode($row['product_image']) . '" class="card-img-top">
+                                <div style="height: 100px; width: 90%;">
+                                    <h6 style="cursor:pointer;" class="card-title text-center">' . $row['product_name'] . '</h6>
+                                </div>
+                                <div class="text-price">
+                                    <h4 class="card-title text-danger">Precio: $' . number_format($row['product_precio']) . '</h4>
+                                </div>
+                                <button type="button" onclick="addProducto(' . $row['id'] . ', \'' . hash_hmac('sha1', $row['id'], KEY_TOKEN) . '\')"
+                                class="btn-shoes" href="">Agregar a carrito</button>
                             </div>
-                            <div class="text-price">
-                                <h4 class="card-title text-danger">Precio: $' . number_format($row['product_precio']) . '</h4>
-                            </div>
-                            <button type="button"
-                            onclick="addProducto(' . $row['id'] . ', \'' . hash_hmac('sha1', $row['id'], KEY_TOKEN) . '\')"
-                            class="p-buy-btn" href="">Agregar a carrito</button>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
                 }
             } else {
                 $output = "<h3>No se encontro nada</h3>";

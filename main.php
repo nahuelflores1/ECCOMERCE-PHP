@@ -1,5 +1,4 @@
 <?php
-
 require './config/config.php';
 require './config/database.php';
 
@@ -10,9 +9,10 @@ $sql = $con->prepare("SELECT id, product_name, product_precio, product_image FRO
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-//session_destroy();
+session_destroy();
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </li>
                         <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a href="./config/carrito.php" class="btn btn-primary">
+                            <a href="./config/product-cart.php" class="btn btn-primary">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -184,22 +184,21 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <h3 class="p-slider">PRODUCTOS DESTACADOS</h3>
                 <div class="glider-contain">
                     <div class="glider">
-                        <?php foreach ($resultado as $row) { ?>
+                        <?php foreach ($resultado as $row) {
+                            $id = 'D' . $row['id']; // Agregar prefijo "D"
+                            $imagenData = $row['product_image'];
+                            $imagen = 'data:image/jpeg;base64,' . base64_encode($imagenData);
+                            $token = hash_hmac('sha1', $id, KEY_TOKEN);
+                            ?>
+
                             <section class="product-box">
                                 <span class="p-discount">Sale</span>
-                                <?php
-                                $id = 'D' . $row['id']; // Agregar prefijo "D"
-                                $imagenData = $row['product_image'];
-                                $imagen = 'data:image/jpeg;base64,' . base64_encode($imagenData);
-                                ?>
-
                                 <a style="width:100%; height:30vh; display:flex;"
-                                    href="product-details.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>">
+                                    href="product-details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>">
                                     <img style="object-fit:contain;" src="<?php echo $imagen; ?>">
                                 </a>
-
                                 <div class="p-box-text">
-                                    <a href="product-details.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>"
+                                    <a href="product-details.php?id=<?php echo $id; ?>&token=<?php echo $token; ?>"
                                         class="product-title">
                                         <?php echo $row['product_name']; ?>
                                     </a>
@@ -207,8 +206,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                                         <span class="p-price">Precio: $
                                             <?php echo $row['product_precio']; ?>
                                         </span>
-                                        <button class="p-buy-btn" style="background: none; border: none;" href="#"
-                                            onclick="addProductoDestacado('<?php echo $id; ?>', '<?php echo hash_hmac('sha1', $id, KEY_TOKEN); ?>')">
+                                        <button class="p-buy-btn" style="background: none; border: none;"
+                                            onclick="addProductoDestacado('<?php echo $id; ?>', '<?php echo $token; ?>')">
                                             Agregar a carrito
                                         </button>
                                     </div>
@@ -217,8 +216,6 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <?php } ?>
                     </div>
                 </div>
-
-
                 <button aria-label="Previous" class="glider-prev">«</button>
                 <button aria-label="Next" class="glider-next">»</button>
                 </div>

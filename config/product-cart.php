@@ -1,7 +1,6 @@
 <?php
-
-require './config/config.php';
-require './config/database.php';
+require 'config.php';
+require 'database.php';
 
 $db = new Database();
 $con = $db->conectar();
@@ -12,31 +11,24 @@ $lista_carrito = array();
 
 if ($producto != null) {
     foreach ($producto as $clave => $cantidad) {
-        $table = substr($clave, 0, 1) === 'D' ? 'products_destacados' : 'products_shoes';
-        $id = substr($clave, 1); 
-        $sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM $table WHERE id=:id");
+        // Verificar si el producto proviene de la tabla products_destacados o products_shoes
+        if (substr($clave, 0, 1) === 'D') {
+            $table = 'products_destacados';
+        } else {
+            $table = 'products_shoes';
+        }
+
+        $id = substr($clave, 1);
+        $sql = $con->prepare("SELECT id, product_name, product_precio, product_image, $cantidad AS cantidad FROM $table WHERE id=:id");
         $sql->execute([':id' => $id]);
         $producto_carrito = $sql->fetch(PDO::FETCH_ASSOC);
 
-
-        $sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM products_destacados WHERE activo=1");
-        $sql->execute();
-        $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
         if ($producto_carrito) {
             $producto_carrito['cantidad'] = $cantidad;
             $lista_carrito[] = $producto_carrito;
         }
     }
-
 }
-
-$sql = $con->prepare("SELECT id, product_name, product_precio, product_image FROM products_destacados WHERE activo=1");
-$sql->execute();
-$resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-//session_destroy();
-
-
 ?>
 
 
@@ -92,7 +84,7 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <div class="col-4">
-                    <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
+                    <a class="navbar-brand" href="../main.php"><img src="../img/kicksmarket.png" alt=""></a>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <ul class="navbar-nav">
@@ -104,7 +96,7 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </li>
                         <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a href="./config/carrito.php" class="btn btn-primary">
+                            <a href="carrito.php" class="btn btn-primary">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -123,7 +115,7 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <div class="logreg-title">
                         <h2>Iniciar</h2>
                     </div>
-                    <form action="config/login_us.php" method="POST">
+                    <form action="login_us.php" method="POST">
                         <div class=" input-box">
                             <span class="icon"><i class="fa-solid fa-envelope"></i></span>
                             <input type="email" name="email" require>
@@ -155,7 +147,7 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <h2>Registrarse</h2>
                     </div>
 
-                    <form action="config/registro_us.php" method="POST">
+                    <form action="registro_us.php" method="POST">
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
                             <input type="text" name="names" require>
@@ -213,7 +205,8 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($lista_carrito == null) {
+                        <?php
+                        if ($lista_carrito == null) {
                             echo '<tr><td colspan="6" class="text-center"><b>Lista Vacía</b></td></tr>';
                         } else {
                             $total = 0;
@@ -250,15 +243,37 @@ $resultado_oferta = $sql->fetchAll(PDO::FETCH_ASSOC);
                                             data-bs-toggle="modal" data-bs-target="eliminaModal">Eliminar</a>
                                     </td>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    <?php } ?>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
                 </table>
             </div>
         </div>
 
     </main>
-    <script src="js/script.js"></script>
+    <script>
+        function addProductoDestacado(id, token) {
+            let url = 'carrito.php'
+            let formData = new FormData()
+            formData.append('id', id)
+            formData.append('token', token)
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors'
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        let elemento = document.getElementById("num_cart");
+                        elemento.innerHTML = data.numero
+                    }
+                })
+        }
+    </script>
+    <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

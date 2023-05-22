@@ -1,5 +1,4 @@
 <?php
-
 require './config/config.php';
 require './config/database.php';
 
@@ -10,47 +9,45 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 $token = isset($_GET['token']) ? $_GET['token'] : '';
 
 if ($id == '' || $token == '') {
-    echo 'Error al procesar la peticio1111n';
+    echo 'Error al procesar la petición';
     exit;
-} else {
-
-    $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
-
-    if ($token == $token_tmp) {
-
-        $sql = $con->prepare("SELECT count(id) FROM products_destacados WHERE id=? AND activo=1");
-        $sql->execute([$id]);
-        if ($sql->fetchColumn() > 0) {
-
-            $sql = $con->prepare("SELECT product_name, product_description, product_precio FROM products_destacados WHERE id=? AND activo=1 
-            LIMIT 1");
-            $sql->execute([$id]);
-            $row = $sql->fetch(PDO::FETCH_ASSOC);
-            $nombre = $row['product_name'];
-            $descripcion = $row['product_description'];
-            $precio = $row['product_precio'];
-            $dir_img = 'img/shoes/' . $id . '/';
-
-            $rutaImg = $dir_img . 'principal.jpg';
-
-            if (!file_exists($rutaImg)) {
-                $rutaImg = 'img/nophoto.jpg';
-            }
-
-            $imagenes = array();
-            $dir = dir($dir_img);
-
-            while (($archivo = $dir->read()) != false) {
-                if ($archivo != 'principal.jpg' && (strpos($archivo, 'jpg') || strpos($archivo, 'jpeg'))) {
-                    $img = $dir_img . $archivo;
-                }
-            }
-            $dir->close();
-        }
-    }
 }
 
+$token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
+
+$sql = $con->prepare("SELECT product_name, product_description, product_precio, product_image FROM products_destacados WHERE id=? AND activo=1 LIMIT 1");
+$sql->execute([$id]);
+
+if ($sql->rowCount() > 0 && $token == $token_tmp) {
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+
+    $nombre = $row['product_name'];
+    $descripcion = $row['product_description'];
+    $precio = $row['product_precio'];
+    $imagenBlob = $row['product_image'];
+
+    if (!empty($imagenBlob)) {
+        $base64Image = base64_encode($imagenBlob);
+        $rutaImg = 'data:image/jpeg;base64,' . $base64Image;
+    } else {
+        $rutaImg = 'img/nophoto.jpg';
+    }
+
+    $dir_img = 'img/shoes/' . $id . '/';
+
+    $imagenes = array();
+    $dir = dir($dir_img);
+
+    while (($archivo = $dir->read()) !== false) {
+        if ($archivo != 'principal.jpg' && (strpos($archivo, 'jpg') !== false || strpos($archivo, 'jpeg') !== false)) {
+            $imagenes[] = $dir_img . $archivo;
+        }
+    }
+    $dir->close();
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +117,7 @@ if ($id == '' || $token == '') {
                         </li>
                         <a href="."></a>
                         <li class="icon-navbar nav-item">
-                            <a href="./config/carrito.php" class="btn btn-primary">
+                            <a href="./config/product-cart.php" class="btn btn-primary">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -225,36 +222,38 @@ if ($id == '' || $token == '') {
         <div class="container">
             <div class="row-details">
                 <div class="col-md-6">
-                    <img src="<?php echo $img ?>" class="img-fluid" alt="Producto">
+                    <img src="<?php echo $rutaImg; ?>" class="img-fluid" alt="Producto">
                 </div>
                 <div class="col-md-6">
                     <h1>
                         <?php echo $nombre; ?>
                     </h1>
+                    <p>
+                        <?php echo $descripcion; ?>
+                    </p>
                     <div class="small-h2">
                         <h2>$
                             <?php echo $precio; ?>
                         </h2>
-                        <small>size 9.5</small>
+                        <small></small>
                     </div>
                     <div class="mb-3">
                         <label for="cantidad">Cantidad:</label>
                         <input type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
                     </div>
                     <button type="button" class="btn-cart btn"
-                        onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp ?>')">Agregar al
+                        onclick="addProductoDestacado(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al
                         Carrito</button>
                     <button type="button" class="btn-buy btn">Comprar Ahora</button>
                 </div>
             </div>
         </div>
-
     </main>
     <footer>
 
     </footer>
     <script>
-        function addProducto(id, token) {
+        function addProductoDestacado(id, token) {
             let url = './config/carrito.php';
             let formData = new FormData();
             formData.append('id', id);
