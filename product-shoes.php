@@ -20,38 +20,17 @@ require 'config/config.php'
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
 <body>
     <p class="sale">¡Use el código ET36 para obtener hasta un 15% de descuento en el mes de agosto!</p>
     <header>
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="col-4">
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            MARCAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            CATEGORIAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <a class="nav-contacto nav-link" href="#" style="color: black;">CONTACTOS</a>
-                    </div>
                 </div>
                 <div class="col-4">
                     <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
@@ -65,8 +44,9 @@ require 'config/config.php'
                             <a class="nav-link" href="#"><i class="fa-user fa-solid" id="user-icon"></i></a>
                         </li>
                         <a href="."></a>
-                        <li class="icon-navbar nav-item">
-                            <a href="./config/product-cart.php" class="btn btn-primary">
+                        <li class="icon-navbar nav-item"
+                            style="display:flex; flex-direction:column; justify-content: center;">
+                            <a href="./config/product-cart.php" class="btn btn-danger">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>

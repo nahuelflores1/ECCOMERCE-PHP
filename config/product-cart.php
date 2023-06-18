@@ -50,8 +50,8 @@ if ($producto != null) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/glider.min.css">
     <title>Carrito</title>
 </head>
 
@@ -61,27 +61,6 @@ if ($producto != null) {
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="col-4">
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            MARCAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            CATEGORIAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <a class="nav-contacto nav-link" href="#" style="color: black;">CONTACTOS</a>
-                    </div>
                 </div>
                 <div class="col-4">
                     <a class="navbar-brand" href="../main.php"><img src="../img/kicksmarket.png" alt=""></a>
@@ -95,8 +74,9 @@ if ($producto != null) {
                             <a class="nav-link" href="#"><i class="fa-user fa-solid" id="user-icon"></i></a>
                         </li>
                         <a href="."></a>
-                        <li class="icon-navbar nav-item">
-                            <a href="carrito.php" class="btn btn-primary">
+                        <li class="icon-navbar nav-item"
+                            style="display:flex; flex-direction:column; justify-content: center;">
+                            <a href="./config/product-cart.php" class="btn btn-danger">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -110,7 +90,6 @@ if ($producto != null) {
     <section class="section">
         <div class="wrapper hidden">
             <div class="logreg-box">
-                <!-- LOGIN SECTION-->
                 <div id="login-form" class="form-box">
                     <div class="logreg-title">
                         <h2>Iniciar</h2>
@@ -141,7 +120,6 @@ if ($producto != null) {
                         </div>
                     </form>
                 </div>
-                <!-- REGISTER SECTION-->
                 <div id="register-form" class="form-box register">
                     <div class="logreg-title">
                         <h2>Registrarse</h2>
@@ -239,7 +217,7 @@ if ($producto != null) {
                                         <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?></div>
                                     </td>
                                     <td>
-                                        <a href="#" id="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>"
+                                        <a id="eliminar" class="btn btn-danger btn-sm" data-bs-id="<?php echo $_id; ?>"
                                             data-bs-toggle="modal" data-bs-target="eliminaModal">Eliminar</a>
                                     </td>
                                 </tr>
@@ -247,8 +225,23 @@ if ($producto != null) {
                             }
                         }
                         ?>
+
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <p class="h3" id="total">
+                                    TOTAL :
+                                    <?php echo MONEDA . number_format($total, 2, '.', '.'); ?>
+                                </p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="row">
+                <div class="col-md-5 d-grid gap-2">
+                    <button class="btn btn-success btn-lg">Realizar pago</button>
+                </div>
             </div>
         </div>
 

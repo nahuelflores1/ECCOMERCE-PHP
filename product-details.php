@@ -71,8 +71,8 @@ if ($sql->rowCount() > 0 && $token == $token_tmp) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/main.css">
-    <link rel="stylesheet" href="http://localhost/ECCOMERCE/css/glider.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/glider.min.css">
     <title>KicksMarket</title>
 </head>
 
@@ -82,27 +82,6 @@ if ($sql->rowCount() > 0 && $token == $token_tmp) {
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="col-4">
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            MARCAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            CATEGORIAS
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        <a class="nav-contacto nav-link" href="#" style="color: black;">CONTACTOS</a>
-                    </div>
                 </div>
                 <div class="col-4">
                     <a class="navbar-brand" href="main.php"><img src="./img/kicksmarket.png" alt=""></a>
@@ -116,8 +95,9 @@ if ($sql->rowCount() > 0 && $token == $token_tmp) {
                             <a class="nav-link" href="#"><i class="fa-user fa-solid" id="user-icon"></i></a>
                         </li>
                         <a href="."></a>
-                        <li class="icon-navbar nav-item">
-                            <a href="./config/product-cart.php" class="btn btn-primary">
+                        <li class="icon-navbar nav-item"
+                            style="display:flex; flex-direction:column; justify-content: center;">
+                            <a href="./config/product-cart.php" class="btn btn-danger">
                                 Carrito<span id="num_cart" class="badge bg-secondary">
                                     <?php echo $num_cart ?>
                                 </span>
@@ -222,7 +202,7 @@ if ($sql->rowCount() > 0 && $token == $token_tmp) {
         <div class="container">
             <div class="row-details">
                 <div class="col-md-6">
-                    <img src="<?php echo $rutaImg; ?>" class="img-fluid" alt="Producto">
+                    <img src=" <?php echo $rutaImg; ?>" class="img-fluid" alt="Producto">
                 </div>
                 <div class="col-md-6">
                     <h1>
@@ -241,9 +221,10 @@ if ($sql->rowCount() > 0 && $token == $token_tmp) {
                         <label for="cantidad">Cantidad:</label>
                         <input type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
                     </div>
-                    <button type="button" class="btn-cart btn"
-                        onclick="addProductoDestacado(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al
-                        Carrito</button>
+                    <button type="button" class="btn-cart btn" onclick=" addProductoDestacado(<?php echo $id; ?>, '
+                        <?php echo $token_tmp; ?>')">Agregar al
+                        Carrito
+                    </button>
                     <button type="button" class="btn-buy btn">Comprar Ahora</button>
                 </div>
             </div>
